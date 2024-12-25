@@ -1,0 +1,213 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>World science</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <style>
+        /* Основные стили страницы */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #6c63ff, #4a267c);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            color: #ffffff;
+        }
+
+        /* Затемненный фон для модального окна */
+        .modal-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 1s ease-in-out;
+            z-index: 1000;
+        }
+
+        /* Анимация появления модального окна */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Модальное окно приветствия */
+        .modal {
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            width: 80%;
+            max-width: 500px;
+            padding: 30px;
+            text-align: center;
+            color: #4a267c;
+            animation: slideDown 0.8s ease;
+        }
+
+        /* Анимация модального окна */
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal h1 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .modal p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        .modal .button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #6c63ff, #4a267c);
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 10px;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .modal .button:hover {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #4a267c, #6c63ff);
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 900px;
+            text-align: center;
+        }
+
+        .text-content h1 {
+            font-size: 2.5rem;
+            color: #ffffff;
+            animation: fadeInText 2s ease-in-out;
+        }
+
+        @keyframes fadeInText {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .text-content h2 {
+            font-size: 1.5rem;
+            color: #f8f9fa;
+        }
+
+        .navigation {
+            margin-top: 30px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .navigation .button {
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #4a267c, #6c63ff);
+            color: #ffffff;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .navigation .button:hover {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, #6c63ff, #4a267c);
+        }
+
+        /* Скрываем модальное окно */
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+<!-- Модальное окно -->
+<div id="modal-background" class="modal-background">
+    <div class="modal">
+        <h1>Welcome to Geography </h1>
+        <p>Manage your continents, countries, and regions effortlessly!</p>
+        <button class="button" id="close-modal">Get Started</button>
+    </div>
+</div>
+
+<!-- Основное содержимое -->
+<div id="main-content" class="container hidden">
+    <div class="text-content">
+        <h1>Welcome to Geography</h1>
+        <h2>Easily Manage Continents, Countries, and Regions</h2>
+    </div>
+    <div class="header">
+        <div th:unless="${username}" class="login-link">
+            <a th:href="@{/login}" class="button">Login</a>
+        </div>
+        <div th:if="${username}" class="user-info" style="display: flex; align-items: center;">
+            <p style="font-size: 1.2rem; font-weight: 500; color: #4a267c; margin-right: 10px;font-size: 1.1rem; font-weight: 600;">
+                Welcome, <span th:text="${username}"></span>
+            </p>
+            <form th:action="@{/logout}" method="post" style="display: inline;">
+                <button type="submit" class="button delete" style="margin-top: 0;">Logout</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <a th:href="@{/continents}" class="button">Continents</a>
+        <a th:href="@{/allcountries}" class="button">All Countries</a>
+        <a th:href="@{/region}" class="button">Regions</a>
+    </div>
+</div>
+
+<script>
+    // Закрытие модального окна
+    document.getElementById('close-modal').addEventListener('click', function () {
+        const modal = document.getElementById('modal-background');
+        const mainContent = document.getElementById('main-content');
+
+        // Плавно скрываем модальное окно
+        modal.style.opacity = '0';
+        modal.style.transition = 'opacity 0.5s ease';
+
+        // Убираем модальное окно после завершения анимации
+        setTimeout(() => {
+            modal.classList.add('hidden');
+            mainContent.classList.remove('hidden'); // Показываем основное содержимое
+        }, 500);
+    });
+</script>
+</body>
+</html>

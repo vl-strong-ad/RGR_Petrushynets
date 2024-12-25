@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Continent</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<div class="container">
+    <h1>Edit Continent</h1>
+
+    <form th:action="@{/continents/update/{id}(id=${continent.continentId})}" th:object="${continent}" method="post" class="form-container">
+        <!-- Скрытое поле для ID континента -->
+        <input type="hidden" th:field="*{continentId}" />
+
+        <!-- Поле для названия континента -->
+        <label for="continentName">Continent Name:</label>
+        <input type="text" id="continentName" th:field="*{continentName}" required />
+        <div th:if="${#fields.hasErrors('continentName')}" th:errors="*{continentName}" class="error"></div>
+
+        <!-- Поле для населения -->
+        <label for="population">Population:</label>
+        <input type="number" id="population" th:field="*{population}" required />
+        <div th:if="${#fields.hasErrors('population')}" th:errors="*{population}" class="error"></div>
+
+        <!-- Поле для площади -->
+        <label for="areaSqKm">Area (sq. km):</label>
+        <input type="number" id="areaSqKm" th:field="*{areaSqKm}" required />
+        <div th:if="${#fields.hasErrors('areaSqKm')}" th:errors="*{areaSqKm}" class="error"></div>
+
+        <!-- Кнопка обновления -->
+        <button type="submit" class="button">Update</button>
+    </form>
+
+    <!-- Ссылка для возврата -->
+    <a href="/continents" class="button back">Back to Continents</a>
+</div>
+</body>
+</html>

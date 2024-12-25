@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Country</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<div class="container">
+    <h1>Add Country</h1>
+    <form th:action="@{/allcountries/add}" th:object="${allcountries}" method="post" class="form-container">
+        <label for="countryName">Country Name:</label>
+        <input type="text" id="countryName" th:field="*{countryName}" required />
+        <div th:if="${#fields.hasErrors('countryName')}" th:errors="*{countryName}" class="error"></div>
+
+        <label for="population">Population:</label>
+        <input type="number" id="population" th:field="*{population}" required />
+        <div th:if="${#fields.hasErrors('population')}" th:errors="*{population}" class="error"></div>
+
+        <label for="areaSqKm">Area (sq. km):</label>
+        <input type="number" id="areaSqKm" th:field="*{areaSqKm}" required />
+        <div th:if="${#fields.hasErrors('areaSqKm')}" th:errors="*{areaSqKm}" class="error"></div>
+
+        <label for="continent">Continent:</label>
+        <select id="continent" th:field="*{continent}" required>
+            <option value="" disabled selected>Select Continent</option>
+            <option value="Europe">Europe</option>
+            <option value="North America">North America</option>
+            <option value="Australia/Oceania">Australia/Oceania</option>
+            <option value="South America">South America</option>
+        </select>
+        <div th:if="${#fields.hasErrors('continent')}" th:errors="*{continent}" class="error"></div>
+
+        <button type="submit" class="button">Save</button>
+    </form>
+    <a th:href="@{/allcountries}" class="button back">Back to All Countries</a>
+</div>
+</body>
+</html>

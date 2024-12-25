@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Continent</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<div class="container">
+    <h1>Add Continent</h1>
+    <form th:action="@{/continents/add}" th:object="${continent}" method="post" class="form-container">
+        <label for="continentName">Continent Name:</label>
+        <input type="text" id="continentName" th:field="*{continentName}" required />
+        <div th:if="${#fields.hasErrors('continentName')}" th:errors="*{continentName}" class="error"></div>
+
+        <label for="population">Population:</label>
+        <input type="number" id="population" th:field="*{population}" required />
+        <div th:if="${#fields.hasErrors('population')}" th:errors="*{population}" class="error"></div>
+
+        <label for="areaSqKm">Area (sq. km):</label>
+        <input type="number" id="areaSqKm" th:field="*{areaSqKm}" required />
+        <div th:if="${#fields.hasErrors('areaSqKm')}" th:errors="*{areaSqKm}" class="error"></div>
+
+        <button type="submit" class="button">Save</button>
+    </form>
+    <a href="/continent" class="button back">Back to Continents</a>
+</div>
+</body>
+</html>

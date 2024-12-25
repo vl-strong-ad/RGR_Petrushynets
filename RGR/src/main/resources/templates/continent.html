@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Continents</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<div class="container">
+    <h1>Continents</h1>
+
+    <!-- Уведомление для администратора -->
+    <div th:if="${isAdmin}">
+        <a href="/continents/add" class="button">Add Continent</a>
+    </div>
+
+    <!-- Таблица континентов -->
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Continent Name</th>
+            <th>Population</th>
+            <th>Area (sq. km)</th>
+            <th th:if="${isAdmin}">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="continent : ${continents}">
+            <td th:text="${continent.continentId}"></td>
+            <td th:text="${continent.continentName}"></td>
+            <td th:text="${continent.population}"></td>
+            <td th:text="${continent.areaSqKm}"></td>
+            <td th:if="${isAdmin}">
+                <a th:href="@{/continents/edit/{id}(id=${continent.continentId})}" class="button">Edit</a>
+                <a th:href="@{/continents/delete/{id}(id=${continent.continentId})}" class="button delete"
+                   onclick="return confirm('Are you sure?');">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a href="/home" class="button">Back to Home</a>
+</div>
+</body>
+</html>

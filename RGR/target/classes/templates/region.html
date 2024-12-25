@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Region List</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<div class="container">
+    <h1>Regions</h1>
+    <a href="/region/add" class="button">Add Region</a>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Region Name</th>
+            <th>Population</th>
+            <th>Country</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="region : ${regions}">
+            <td th:text="${region.regionId}"></td>
+            <td th:text="${region.regionName}"></td>
+            <td th:text="${region.population}"></td>
+            <td th:text="${region.country}"></td>
+            <td>
+                <a th:href="@{/region/edit/{id}(id=${region.regionId})}" class="button">Edit</a>
+                <a th:href="@{/region/delete/{id}(id=${region.regionId})}" class="button delete"
+                   onclick="return confirm('Are you sure?');">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="/home" class="button">Back to Home</a>
+</div>
+</body>
+</html>

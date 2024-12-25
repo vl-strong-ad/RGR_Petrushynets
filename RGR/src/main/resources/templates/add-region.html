@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Region</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<div class="container">
+    <h1>Add Region</h1>
+
+    <!-- Форма для добавления региона -->
+    <form th:action="@{/region/add}" th:object="${region}" method="post" class="form-container">
+        <!-- Поле для ввода названия региона -->
+        <label for="regionName">Region Name:</label>
+        <input type="text" id="regionName" th:field="*{regionName}" required />
+        <div th:if="${#fields.hasErrors('regionName')}" th:errors="*{regionName}" class="error"></div>
+
+        <!-- Поле для ввода населения -->
+        <label for="population">Population:</label>
+        <input type="number" id="population" th:field="*{population}" required />
+        <div th:if="${#fields.hasErrors('population')}" th:errors="*{population}" class="error"></div>
+
+        <!-- Поле для ввода страны (текст) -->
+        <label for="country">Country:</label>
+        <input type="text" id="country" th:field="*{country}" placeholder="Enter country name" required />
+        <div th:if="${#fields.hasErrors('country')}" th:errors="*{country}" class="error"></div>
+
+        <!-- Кнопка сохранения региона -->
+        <button type="submit" class="button">Save</button>
+    </form>
+
+    <!-- Ссылка для возврата к списку регионов -->
+    <a href="/regions" class="button back">Back to Regions</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,243 @@
+/* Общие стили */
+body {
+    font-family: 'Montserrat', sans-serif; /* Изменён шрифт */
+    font-weight: 400;
+    background: linear-gradient(90deg, rgba(127, 58, 180, 1) 0%, rgba(0, 255, 205, 1) 100%); /* Прежний фон */
+    margin: 0;
+    padding: 0;
+    color: #2f3640;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-rendering: optimizeLegibility;
+    animation: fadeBackground 10s ease infinite;
+}
+
+/* Анимация смены фона */
+@keyframes fadeBackground {
+    0% {
+        background: linear-gradient(90deg, rgba(127, 58, 180, 1) 0%, rgba(0, 255, 205, 1) 100%);
+    }
+    50% {
+        background: linear-gradient(90deg, rgba(58, 127, 180, 1) 0%, rgba(255, 0, 205, 1) 100%);
+    }
+    100% {
+        background: linear-gradient(90deg, rgba(127, 58, 180, 1) 0%, rgba(0, 255, 205, 1) 100%);
+    }
+}
+
+/* Контейнер */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 50px;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.container:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+}
+/* Стилі форм */
+.form-container {
+    background: linear-gradient(135deg, #f6f9fc, #dff1ff);
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.form-container label {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+.form-container input,
+.form-container select {
+    width: 87%;
+    padding: 14px 16px;
+    margin-bottom: 25px;
+    border: 1px solid #b0c4de;
+    border-radius: 10px;
+    font-size: 1rem;
+    background: #f8f9fa;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-container input:focus,
+.form-container select:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.5);
+    outline: none;
+}
+
+.form-container button {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(135deg, #3498db, #2c82c9);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s;
+}
+
+.form-container button:hover {
+    background: linear-gradient(135deg, #2c82c9, #1d6fa5);
+    transform: translateY(-3px);
+}
+.links {
+    text-align: center; /* Центрування тексту */
+    margin-top: 20px; /* Відступ зверху */
+    font-size: 1rem; /* Розмір тексту */
+
+}
+
+.links a {
+    color: #4a267c; /* Колір тексту */
+    text-decoration: none; /* Забираємо підкреслення */
+    font-weight: 500; /* Напівжирний шрифт */
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: color 0.3s ease, text-decoration 0.3s ease; /* Анімація при наведенні */
+}
+
+.links a:hover {
+    color: #12dabf; /* Колір при наведенні */
+    text-decoration: underline; /* Підкреслення при наведенні */
+}
+/* Заголовок */
+h1 {
+    color: #2f3640;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Контейнер кнопок */
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 30px;
+}
+
+/* Таблица */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 20px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #ffffff, #f2f4f8);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    margin-top: 30px;
+    animation: fadeIn 1.2s ease;
+}
+
+table th, table td {
+    padding: 15px 20px;
+    text-align: center;
+    font-size: 1.1rem;
+    color: #2f3640;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background: #8e44ad;
+    color: #fff;
+    font-weight: 700;
+}
+
+table tr:nth-child(even) {
+    background: #f4f7fa;
+}
+
+table tr:hover {
+    background: #e8f0f9;
+    transition: background 0.3s ease, transform 0.2s ease;
+    transform: scale(1.02);
+}
+
+/* Анимации */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+/* Кнопки */
+.button {
+    display: inline-block;
+    background: linear-gradient(135deg, #8e44ad, #3498db); /* Новый стиль кнопок */
+    color: #fff;
+    padding: 15px 40px;
+    margin-top: 10px;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 700;
+    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.button:hover {
+    background: #fff; /* Світлий фон */
+    color: #3498db; /* Зміна кольору тексту */
+    border-color: #3498db; /* Додаємо кольорову рамку */
+    text-decoration: underline; /* Підкреслення */
+}
+
+.button.edit:hover {
+    background: #fff; /* Світлий фон */
+    color: #3498db; /* Зміна кольору тексту */
+    border-color: #3498db; /* Додаємо кольорову рамку */
+    text-decoration: underline; /* Підкреслення */
+}
+
+.button.delete:hover {
+    background: #fff; /* Світлий фон */
+    color: #3498db; /* Зміна кольору тексту */
+    border-color: #3498db; /* Додаємо кольорову рамку */
+    text-decoration: underline; /* Підкреслення */
+}
+.button-group {
+    display: grid;
+}
+.button.edit {
+    background: #ffc107;
+}
+
+.button.delete {
+    background: #dc3545;
+}
+.modal-background{
+    color: #4a267c;
+}

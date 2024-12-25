@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Countries</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<div class="container">
+    <h1>All Countries</h1>
+
+    <!-- Если пользователь является администратором, показываем кнопку для добавления страны -->
+    <div th:if="${isAdmin}">
+        <a href="/allcountries/add" class="button">Add Country</a>
+    </div>
+
+    <!-- Если пользователь не администратор, показываем уведомление о режиме только для просмотра -->
+    <div th:if="${!isAdmin}" class="warning-message">
+        <p style="color: #b61d1d; font-weight: bold;">Note: You are in view-only mode. Admin rights are required for modifications.</p>
+    </div>
+
+    <!-- Таблица с данными стран -->
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Country Name</th>
+            <th>Population</th>
+            <th>Area (sq. km)</th>
+            <th>Continent</th>
+            <th th:if="${isAdmin}">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Перебор списка стран -->
+        <tr th:each="country : ${allcountries}">
+            <td th:text="${country.id}"></td>
+            <td th:text="${country.countryName}"></td>
+            <td th:text="${country.population}"></td>
+            <td th:text="${country.areaSqKm}"></td>
+            <td th:text="${country.continent}"></td>
+            <td th:if="${isAdmin}" class="actions">
+                <a th:href="@{/allcountries/edit/{id}(id=${country.id})}" class="button edit">Edit</a>
+                <a th:href="@{/allcountries/delete/{id}(id=${country.id})}" class="button delete" onclick="return confirm('Are you sure you want to delete this country?');">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- Кнопка для возвращения на главную страницу -->
+    <a href="/home" class="button back">Back to Home</a>
+</div>
+</body>
+</html>
