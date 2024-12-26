@@ -11,11 +11,6 @@ DatabaseProject
 Завантажити Docker.
 
 Клонуйте репозиторій.
-
-bash
-Копировать код
-git clone https://github.com/your-username/your-repo.git
-cd your-repo
 Налаштуйте параметри середовища.
 
 Відкрийте файли application.properties або docker-compose.yaml.
